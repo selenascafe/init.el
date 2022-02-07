@@ -1,0 +1,109 @@
+#+TITLE: init.el
+#+PROPERTY: header-args :tangle init.el
+
+Because I like Emacs!
+
+This is my configuration file for Emacs, it keeps everything mostly vanilla, while still adding some improvements, such as using M-IJKL to move around (seriously, does anyone the default movement keybindings?)
+
+* Note
+  Most of this configuration is taken from [[https://www.youtube.com/channel/UCAiiOTio8Yu69c3XnR7nQBQ][System Crafters]]'s [[https://www.youtube.com/watch?v=74zOY-vgkyw&t=6s][Emacs From Scratch]] series. Go watch his videos if you're interested in Emacs!
+
+* Installation
+  Clone this repository and move the /init.el/ file to your desired Emacs configuration directory. I like to use ~/.emacs.d/ but you can use any of the supported directories.
+
+* The /init.el/ file
+** Disabling default settings
+   These settings are mostly for disabling GUI elements, such as the scrollbar, toolbar, etc.
+   It also disables file backups and auto-saves, remove the last two lines to enable them.
+
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(set-fringe-mode 10)
+(menu-bar-mode -1)
+(setq backup-inhibited t)
+(setq auto-save-default nil)
+#+END_SRC
+
+** IJKL movement
+   This part allows you to move around text using /M-i/, /M-j/, /M-k/ and /M-l/.
+
+#+BEGIN_SRC emacs-lisp
+(define-key global-map "\M-i" 'previous-line)
+(define-key global-map "\M-j" 'backward-char)
+(define-key global-map "\M-k" 'next-line)
+(define-key global-map "\M-l" 'forward-char)
+#+END_SRC
+
+** Initialazing package sources
+   This will set up the package sources which are needed to get the needed packages if you haven't installed them before.
+
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+(unless package-archive-contents
+ (package-refresh-contents))
+(unless (package-installed-p 'use-package)
+   (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
+#+END_SRC
+
+** Packages
+   This configurations uses various packages.
+
+   - /EMMS/, for playing local music inside of Emacs
+   - /phoenix-dark-pink-theme/ and /doom-themes/, a theme and a theme pack. The default theme is /doom-tokyo-night/
+   - /latex-preview-pane/ to get a preview of LaTeX documents
+   - /org/, already included with Emacs, but this pulls the latest version
+   - /org-bullets/ to give a small icon to each level of heading, which you can change by other unicode symbols.
+   - /simple-httpd/, I use this for testing websites written in org mode and then translated to HTML
+
+#+BEGIN_SRC emacs-lisp
+(use-package emms)
+(use-package phoenix-dark-pink-theme)
+(use-package doom-themes
+  :ensure t)
+(use-package latex-preview-pane)
+(use-package org(
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode))
+(use-package simple-httpd
+  :ensure t)
+#+END_SRC
+
+*** EMMS
+   Setting up EMMS. Change the music directory to wherever you store your music files.
+
+#+BEGIN_SRC emacs-lisp
+(require 'emms-setup)
+(emms-all)
+(emms-default-players)
+(setq emms-source-file-default-directory "~/Data/Música/")
+#+END_SRC
+
+*** Theme configuration
+    Enabling *bold* and /italic/ text for /doom-themes/ and load /doom-tokyo-night/ as the default theme.
+    
+#+BEGIN_SRC emacs-lisp
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+(load-theme 'doom-tokyo-night t)
+#+END_SRC
+
+*** Document configuration
+    Settings for Org and LaTeX.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-ellipsis " ▼")
+(setq org-agenda-start-with-log-mode t)
+(setq org-lod-done 'time)
+(setq org-log-into-drawer t)
+(latex-preview-pane-enable)
+#+END_SRC
