@@ -29,7 +29,7 @@
 (use-package doom-themes
   :ensure t)
 (use-package latex-preview-pane)
-(use-package org(
+(use-package org)
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode))
