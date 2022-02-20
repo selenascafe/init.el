@@ -37,7 +37,7 @@ This is my configuration file for Emacs, it keeps everything mostly vanilla, whi
 (define-key global-map "\M-l" 'forward-char)
 #+END_SRC
 
-** Initialazing package sources
+** Initializing packages
    This will set up the package sources which are needed to get the needed packages if you haven't installed them before.
 
 #+BEGIN_SRC emacs-lisp
@@ -57,7 +57,6 @@ This is my configuration file for Emacs, it keeps everything mostly vanilla, whi
 ** Packages
    This configurations uses various packages.
 
-   - /EMMS/, for playing local music inside of Emacs
    - /phoenix-dark-pink-theme/ and /doom-themes/, a theme and a theme pack. The default theme is /doom-tokyo-night/
    - /latex-preview-pane/ to get a preview of LaTeX documents
    - /org/, already included with Emacs, but this pulls the latest version
@@ -65,7 +64,6 @@ This is my configuration file for Emacs, it keeps everything mostly vanilla, whi
    - /simple-httpd/, I use this for testing websites written in org mode and then translated to HTML
 
 #+BEGIN_SRC emacs-lisp
-(use-package emms)
 (use-package phoenix-dark-pink-theme)
 (use-package doom-themes
   :ensure t)
@@ -78,23 +76,13 @@ This is my configuration file for Emacs, it keeps everything mostly vanilla, whi
   :ensure t)
 #+END_SRC
 
-*** EMMS
-   Setting up EMMS. Change the music directory to wherever you store your music files.
-
-#+BEGIN_SRC emacs-lisp
-(require 'emms-setup)
-(emms-all)
-(emms-default-players)
-(setq emms-source-file-default-directory "~/Data/Música/")
-#+END_SRC
-
 *** Theme configuration
-    Enabling *bold* and /italic/ text for /doom-themes/ and load /doom-tokyo-night/ as the default theme.
+    Enabling *bold* and /italic/ text for /doom-themes/ and load /doom-Iosvkem/ as the default theme.
     
 #+BEGIN_SRC emacs-lisp
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-tokyo-night t)
+(load-theme 'doom-Iosvkem t)
 #+END_SRC
 
 *** Document configuration
@@ -103,7 +91,7 @@ This is my configuration file for Emacs, it keeps everything mostly vanilla, whi
 #+BEGIN_SRC emacs-lisp
 (setq org-ellipsis " ▼")
 (setq org-agenda-start-with-log-mode t)
-(setq org-lod-done 'time)
+(setq org-log-done 'time)
 (setq org-log-into-drawer t)
 (latex-preview-pane-enable)
 #+END_SRC

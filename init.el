@@ -24,7 +24,6 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package emms)
 (use-package phoenix-dark-pink-theme)
 (use-package doom-themes
   :ensure t)
@@ -36,17 +35,12 @@
 (use-package simple-httpd
   :ensure t)
 
-(require 'emms-setup)
-(emms-all)
-(emms-default-players)
-(setq emms-source-file-default-directory "~/Data/Música/")
-
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-tokyo-night t)
+(load-theme 'doom-Iosvkem t)
 
 (setq org-ellipsis " ▼")
 (setq org-agenda-start-with-log-mode t)
-(setq org-lod-done 'time)
+(setq org-log-done 'time)
 (setq org-log-into-drawer t)
 (latex-preview-pane-enable)
