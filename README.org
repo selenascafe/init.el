@@ -38,7 +38,7 @@ This is my configuration file for Emacs, it keeps everything mostly vanilla, whi
 #+END_SRC
 
 ** Initializing packages
-   This will set up the package sources which are needed to get the needed packages if you haven't installed them before.
+   This will set up the package sources.
 
 #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -62,27 +62,29 @@ This is my configuration file for Emacs, it keeps everything mostly vanilla, whi
    - /org/, already included with Emacs, but this pulls the latest version
    - /org-bullets/ to give a small icon to each level of heading, which you can change by other unicode symbols.
    - /simple-httpd/, I use this for testing websites written in org mode and then translated to HTML
+   - /rainbow-mode/ for highlighting color codes.
 
 #+BEGIN_SRC emacs-lisp
-(use-package phoenix-dark-pink-theme)
-(use-package doom-themes
-  :ensure t)
-(use-package latex-preview-pane)
-(use-package org)
-(use-package org-bullets
-  :after org
-  :hook (org-mode . org-bullets-mode))
-(use-package simple-httpd
-  :ensure t)
+      (use-package phoenix-dark-pink-theme)
+      (use-package doom-themes
+	:ensure t)
+      (use-package latex-preview-pane)
+      (use-package org)
+      (use-package org-bullets
+	:after org
+	:hook (org-mode . org-bullets-mode))
+      (use-package simple-httpd
+	:ensure t)
+      (use-package rainbow-mode)
 #+END_SRC
 
 *** Theme configuration
-    Enabling *bold* and /italic/ text for /doom-themes/ and load /doom-Iosvkem/ as the default theme.
+    Enabling *bold* and /italic/ text for /doom-themes/ and load /doom-tokyo-night/ as the default theme.
     
 #+BEGIN_SRC emacs-lisp
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-Iosvkem t)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-tokyo-night t)
 #+END_SRC
 
 *** Document configuration

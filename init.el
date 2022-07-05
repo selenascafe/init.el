@@ -34,10 +34,11 @@
   :hook (org-mode . org-bullets-mode))
 (use-package simple-httpd
   :ensure t)
+(use-package rainbow-mode)
 
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-Iosvkem t)
+(load-theme 'doom-tokyo-night t)
 
 (setq org-ellipsis " ▼")
 (setq org-agenda-start-with-log-mode t)
